@@ -48,15 +48,13 @@
             "label": {
                 "en": "Created",
                 "fr": "Créé le"
-            },
-            "preset": "--"
+            }
         },
         {   "field_name": "metadata_modified",
             "label": {
                 "en": "Last modification",
                 "fr": "Dernière modification"
-            },
-            "preset": "--"
+            }
         },
         {
             "field_name": "license_id",
