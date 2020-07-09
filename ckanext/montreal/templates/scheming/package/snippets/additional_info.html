@@ -20,7 +20,7 @@
         <th scope="row" class="dataset-label">{{
           h.scheming_language_text(field.label) }}</th>
         <td class="dataset-details"
-          {% if field.field_name == "metadata_modified" || field.field_name == "metadata_created" %}
+          {% if field.field_name == 'metadata_modified' or field.field_name == 'metadata_created' %}
               {%- snippet 'snippets/local_friendly_datetime.html',
             field=field, data=pkg_dict, schema=schema -%}</td>
           {% else %}
