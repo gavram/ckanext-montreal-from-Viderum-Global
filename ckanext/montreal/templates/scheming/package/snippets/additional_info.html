@@ -26,7 +26,7 @@
           {% else %}
             {% if field.display_property %} 
               property="{{ field.display_property}}"
-            {  % endif %}>{%- snippet 'scheming/snippets/display_field.html',
+            {% endif %}>{%- snippet 'scheming/snippets/display_field.html',
             field=field, data=pkg_dict, schema=schema -%}</td>
           {% endif %}
       </tr>
