@@ -13,49 +13,47 @@
     ] -%}
 
 {% block package_additional_info %}
-  {%- for field in schema.dataset_fields -%}
-    {%- if field.field_name not in exclude_fields
-        and field.display_snippet is not none -%}
-      {% if field.field_name == "author_email" %}
-        <tr>
-          <th scope="row" class="dataset-label">{{
-              h.scheming_language_text(field.label) }}</th>
-          <td class="dataset-details" property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}</td>
-        </tr>
-      {% endif %}
+  
+  {% set field = schema.dataset_fields %}
+  {% if field.author_email %}
+    <tr>
+      <th scope="row" class="dataset-label">{{
+          h.scheming_language_text(field.label) }}</th>
+      <td class="dataset-details" property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}</td>
+    </tr>
+  {% endif %}
 
-      {% if pkg_dict.author %}
-        <tr>
-          <th scope="row" class="dataset-label">{{ _("Author") }}</th>
-          <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
-        </tr>
-      {% endif %}
+  {% if pkg_dict.author %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Author") }}</th>
+      <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
+    </tr>
+  {% endif %}
 
-      {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
-        <tr>
-          <th scope="row" class="dataset-label">{{ _("State") }}</th>
-          <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
-        </tr>
-      {% endif %}
-      {% if pkg_dict.metadata_modified %}
-        <tr>
-          <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>
-          <td class="dataset-details">
-              {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
-          </td>
-        </tr>
-      {% endif %}
-      {% if pkg_dict.metadata_created %}
-        <tr>
-          <th scope="row" class="dataset-label">{{ _("Created") }}</th>
+  {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("State") }}</th>
+      <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.metadata_modified %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>
+      <td class="dataset-details">
+          {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
+      </td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.metadata_created %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Created") }}</th>
 
-          <td class="dataset-details">
-              {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
-          </td>
-        </tr>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
+      <td class="dataset-details">
+          {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
+      </td>
+    </tr>
+  {% endif %}
+
   {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
     <tr>
       <th scope="row" class="dataset-label">{{ _("State") }}</th>
