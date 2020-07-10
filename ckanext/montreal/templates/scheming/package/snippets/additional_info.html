@@ -19,16 +19,12 @@
       <tr>
         <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
         <td class="dataset-details"{% if field.display_property %} property="{{ field.display_property }}"{% endif %}>
-          {% if field.field_name == 'metadata_created' %}
+          {% if pkg_dict.metadata_created or pkg_dict.metadata_modified %}
             {% snippet 'snippets/local_friendly_datetime, datetime=pkg_dict.metadata_created %}</td>
           {% else %}
-            {% if field.field_name == 'metadata_modified' %}
-              {% snippet 'snippets/local_friendly_datetime, datetime=pkg_dict.metadata_modified %}</td>
-            {% else %}
-              {%- snippet 'scheming/snippets/display_field.html',
-              field=field, data=pkg_dict, schema=schema -%}</td>
-            {% endif %}
-          {%- endif -%}
+            {%- snippet 'scheming/snippets/display_field.html',
+            field=field, data=pkg_dict, schema=schema -%}</td>
+          {% endif %}
       </tr>
     {%- endif -%}
   {%- endfor -%}
