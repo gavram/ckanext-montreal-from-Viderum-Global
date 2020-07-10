@@ -45,6 +45,7 @@
             "inline" : false
         },
         {   "field_name": "metadata_created",
+            "form_snippet": "local_friendly_datetime.html",
             "label": {
                 "en": "Created",
                 "fr": "Créé le"
@@ -52,6 +53,7 @@
             "preset": "--"
         },
         {   "field_name": "metadata_modified",
+            "form_snippet": "local_friendly_datetime.html",
             "label": {
                 "en": "Last modification",
                 "fr": "Dernière modification"
