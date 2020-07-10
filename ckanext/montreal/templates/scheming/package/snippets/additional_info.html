@@ -21,11 +21,13 @@
         <td class="dataset-details"{% if field.display_property %} property="{{ field.display_property }}"{% endif %}>
           {% if field.field_name == 'metadata_created' %}
             {% snippet 'snippets/local_friendly_datetime, datetime=pkg_dict.metadata_created %}</td>
-          {% elif 'metadata_modified' %}
-            {% snippet 'snippets/local_friendly_datetime, datetime=pkg_dict.metadata_modified %}</td>
           {% else %}
-            {%- snippet 'scheming/snippets/display_field.html',
-            field=field, data=pkg_dict, schema=schema -%}</td>
+            {% if field.field_name == 'metadata_modified' %}
+              {% snippet 'snippets/local_friendly_datetime, datetime=pkg_dict.metadata_modified %}</td>
+            {% else %}
+              {%- snippet 'scheming/snippets/display_field.html',
+              field=field, data=pkg_dict, schema=schema -%}</td>
+            {% endif %}
           {%- endif -%}
       </tr>
     {%- endif -%}
