@@ -15,7 +15,7 @@
 {% block package_additional_info %}
   
   {% set field = schema.dataset_fields %}
-  {% if field.author_email %}
+  {% if field.field_name == "author_email" %}
     <tr>
       <th scope="row" class="dataset-label">{{
           h.scheming_language_text(field.label) }}</th>
@@ -23,9 +23,10 @@
     </tr>
   {% endif %}
 
-  {% if pkg_dict.author %}
+  {% if field.field_name == "author" %}
     <tr>
-      <th scope="row" class="dataset-label">{{ _("Author") }}</th>
+      <th scope="row" class="dataset-label">{{
+          h.scheming_language_text(field.label) }}</th>
       <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
     </tr>
   {% endif %}
