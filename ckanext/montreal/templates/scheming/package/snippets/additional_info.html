@@ -31,7 +31,7 @@
           <td class="dataset-details"{%
             if field.display_property %} property="{{ field.display_property 
             }}"{% endif %}>
-            {%- snippet 'snippets/local_friendly_datetime.html', datetime=pkg_dict.metadata_created -%}
+            {{ h.render_datetime(data[field.field_name], date_format='%Y-%m-%d %H:%M') }}
           </td>
         </tr>
       {%- else -%}
@@ -41,7 +41,7 @@
           <td class="dataset-details"{%
             if field.display_property %} property="{{ field.display_property 
             }}"{% endif %}>
-            {%- snippet 'snippets/local_friendly_datetime.html', datetime=pkg_dict.metadata_modified -%}
+            {{ h.render_datetime(data[field.field_name], date_format='%Y-%m-%d %H:%M') }}
           </td>
         </tr>
       {%- endif -%}
