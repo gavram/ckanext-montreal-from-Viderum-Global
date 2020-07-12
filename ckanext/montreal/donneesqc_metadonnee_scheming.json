@@ -45,18 +45,18 @@
             "inline" : false
         },
         {   "field_name": "metadata_created",
-            "form_snippet": "local_friendly_datetime.html",
             "label": {
                 "en": "Created",
                 "fr": "Créé le"
-            }
+            },
+            "display_snippet": "none"
         },
         {   "field_name": "metadata_modified",
-            "form_snippet": "local_friendly_datetime.html",
             "label": {
                 "en": "Last modification",
                 "fr": "Dernière modification"
-            }
+            },
+            "display_snippet": "none"
         },
         {
             "field_name": "license_id",
