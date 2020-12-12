@@ -30,6 +30,10 @@ class MontrealPlugin(plugins.SingletonPlugin):
         response.content_disposition = 'attachment'
         #Use ckan internal resource_download method
         return self.resource_download(package_id,resource_id,file_name)
+    
+    def preview(self, package_id, resource_id, file_name):
+        response.content_disposition = 'inline'
+        return self.resource_download(package_id,resource_id,file_name)
 
     # IRoutes
 
