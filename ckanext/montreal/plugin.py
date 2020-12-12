@@ -24,6 +24,12 @@ class MontrealPlugin(plugins.SingletonPlugin):
                 helpers.get_recently_updated_datasets,
 
         }
+    
+    def download(self, package_id, resource_id, file_name):
+        # Use Response with content_disposition as attachement.
+        response.content_disposition = 'attachment'
+        #Use ckan internal resource_download method
+        return self.resource_download(package_id,resource_id,file_name)
 
     # IRoutes
 
