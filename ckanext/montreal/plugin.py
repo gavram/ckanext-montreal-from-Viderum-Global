@@ -29,15 +29,10 @@ class MontrealPlugin(plugins.SingletonPlugin):
         # Use Response with content_disposition as attachement.
         if response.content_type == 'Application/json':
             response.content_disposition = 'attachment'
-            response.content_type = 'Application/octet-stream'
             response.cache_control = 'no-cache';
         #Use ckan internal resource_download method
         return self.resource_download(package_id,resource_id,file_name)
     
-    def preview(self, package_id, resource_id, file_name):
-        response.content_disposition = 'inline'
-        return self.resource_download(package_id,resource_id,file_name)
-
     # IRoutes
 
     def before_map(self, map):
