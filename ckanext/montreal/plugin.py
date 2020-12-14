@@ -27,9 +27,9 @@ class MontrealPlugin(plugins.SingletonPlugin):
     
     def download(self, package_id, resource_id, file_name):
         # Use Response with content_disposition as attachement.
-        if response.content_type == 'Application/json':
+        if response.content_type == 'application/json':
             response.content_disposition = 'attachment'
-            response.content_type = 'Application/octet-stream'
+            response.content_type = 'application/octet-stream'
             response.cache_control = 'no-cache';
         #Use ckan internal resource_download method
         return self.resource_download(package_id,resource_id,file_name)
