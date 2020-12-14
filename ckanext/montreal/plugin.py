@@ -29,6 +29,7 @@ class MontrealPlugin(plugins.SingletonPlugin):
         # Use Response with content_disposition as attachement.
         if response.content_type == 'Application/json':
             response.content_disposition = 'attachment'
+            response.content_type = 'Application/octet-stream'
             response.cache_control = 'no-cache';
         #Use ckan internal resource_download method
         return self.resource_download(package_id,resource_id,file_name)
