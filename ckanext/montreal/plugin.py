@@ -7,6 +7,18 @@ class MontrealPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IRoutes)
+    
+    def download(self, package_id, resource_id, file_name):
+        # This enables download of JSON files.
+        if response.content_type == 'application/json':
+            # Use Response with content_disposition as attachement.
+            response.content_disposition = 'attachment'
+            # Use Application/octet-stream to trigger
+            # Open/Download dialog in browser
+            response.content_type = 'application/octet-stream'
+            response.cache_control = 'no-cache';
+        #Use ckan internal resource_download method
+        return self.resource_download(package_id,resource_id,file_name)
 
     # IConfigurer
 
@@ -24,15 +36,6 @@ class MontrealPlugin(plugins.SingletonPlugin):
                 helpers.get_recently_updated_datasets,
 
         }
-    
-    def download(self, package_id, resource_id, file_name):
-        # Use Response with content_disposition as attachement.
-        if response.content_type == 'application/json':
-            response.content_disposition = 'attachment'
-            response.content_type = 'application/octet-stream'
-            response.cache_control = 'no-cache';
-        #Use ckan internal resource_download method
-        return self.resource_download(package_id,resource_id,file_name)
     
     # IRoutes
 
